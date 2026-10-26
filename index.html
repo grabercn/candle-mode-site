@@ -84,8 +84,9 @@ h2{font-size:clamp(32px,4vw,48px);margin-bottom:16px}
 .dark::after{content:"";position:absolute;left:50%;top:50%;width:1000px;height:1000px;transform:translate(-50%,-50%);background:radial-gradient(circle,#f2a5411f,transparent 60%);pointer-events:none}
 .dark h2,.dark h3{color:var(--cream)}.dark .sub{color:#f4ebddb3}.dark .kicker{color:var(--gold)}
 .moments{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
-.moment{border-radius:24px;padding:32px;background:#f4ebdd0f;border:1px solid #f4ebdd1f}
-.moment .ic{font-size:34px;margin-bottom:16px}
+.moment{border-radius:24px;overflow:hidden;background:#f4ebdd0f;border:1px solid #f4ebdd1f}
+.moment img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.moment .body{padding:24px 28px 30px}
 .moment h3{font-size:26px;margin-bottom:8px}
 .moment p{color:#f4ebddbf}
 
@@ -119,7 +120,7 @@ summary::after{content:"+";color:var(--terra);font-size:26px;line-height:1;trans
 details[open] summary::after{transform:rotate(45deg)}
 details p{color:var(--muted);margin-top:12px}
 
-.final{text-align:center;padding:110px 0}
+.final{text-align:center;padding:130px 0;background:linear-gradient(#1f1a17cc,#2f4a3aee),url(assets/photos/candle.jpg) center/cover}
 .final .signup{margin:32px auto 0}
 .final .thanks{margin:32px auto 0;text-align:left}
 footer{border-top:1px solid #2f4a3a1f;padding:32px 0;color:var(--muted);font-size:14px}
@@ -190,9 +191,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <h2>Be the one who's actually there.</h2>
   <p class="sub">Nobody remembers the reel they watched at dinner. They remember who was paying attention.</p>
   <div class="moments" style="text-align:left">
-    <div class="moment"><div class="ic">🍝</div><h3>Dinner</h3><p>Family dinner, friends at your favorite spot. Phones stay quiet until the check comes.</p></div>
-    <div class="moment"><div class="ic">🥂</div><h3>Dates</h3><p>Give them your full attention. Turns out it's the most attractive thing you can do.</p></div>
-    <div class="moment"><div class="ic">🎶</div><h3>Events</h3><p>Phone-free parties, shows and meetups. Hosts can mark their event so everyone's on the same page.</p></div>
+    <div class="moment"><img src="assets/photos/dinner.jpg" alt="" loading="lazy"><div class="body"><h3>Dinner</h3><p>Family dinner, friends at your favorite spot. Phones stay quiet until the check comes.</p></div></div>
+    <div class="moment"><img src="assets/photos/dates.jpg" alt="" loading="lazy"><div class="body"><h3>Dates</h3><p>Give them your full attention. Turns out it's the most attractive thing you can do.</p></div></div>
+    <div class="moment"><img src="assets/photos/events.jpg" alt="" loading="lazy"><div class="body"><h3>Events</h3><p>Phone-free parties, shows and meetups. Hosts can mark their event so everyone's on the same page.</p></div></div>
   </div>
 </div></section>
 
@@ -259,6 +260,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <footer><div class="wrap">
   <span>© 2026 Candle Mode</span>
   <span>Made for people who'd rather be there.</span>
+  <span style="width:100%;font-size:12px">Photos by <a href="https://unsplash.com/@queenslandaustralia?utm_source=candle_mode&utm_medium=referral">Queensland, Australia</a>, <a href="https://unsplash.com/@aalochak?utm_source=candle_mode&utm_medium=referral">Himanshu Choudhary</a>, <a href="https://unsplash.com/@yvettedewit?utm_source=candle_mode&utm_medium=referral">Yvette de Wit</a>, <a href="https://unsplash.com/@eugenemagia?utm_source=candle_mode&utm_medium=referral">Eugene Uhanov</a> on <a href="https://unsplash.com/?utm_source=candle_mode&utm_medium=referral">Unsplash</a>.</span>
 </div></footer>
 
 <script>
