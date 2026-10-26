@@ -150,7 +150,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (prefers-reduced-motion:reduce){.flame{animation:none}html{scroll-behavior:auto}}
 /* 3D + motion */
 .phone-stage{justify-self:center;perspective:1100px}
-.phone{transform:rotateY(var(--ry,-12deg)) rotateX(var(--rx,6deg));transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.7,.2,1);animation:float 7s ease-in-out infinite}
+.phone{transform:translateY(var(--py,0px)) rotateY(var(--ry,-12deg)) rotateX(var(--rx,6deg)) rotateZ(var(--rz,0deg));transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.7,.2,1);animation:float 7s ease-in-out infinite}
 @keyframes float{50%{translate:0 -12px}}
 .screen::after{content:"";position:absolute;inset:0;border-radius:40px;background:linear-gradient(115deg,transparent 30%,#ffffff14 45%,transparent 60%);transform:translateX(var(--glare,0%));pointer-events:none}
 .tilt{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
@@ -365,6 +365,23 @@ if (!still && matchMedia('(pointer:fine)').matches) {
     c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; c.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateZ(10px)`; });
     c.addEventListener('pointerleave', () => c.style.transform = '');
   });
+}
+
+// on touch screens the phone turns in 3D as you scroll past it (parallax)
+if (!still && !matchMedia('(pointer:fine)').matches) {
+  phone.style.transition = 'none';
+  let cur = 0;
+  (function tick() {
+    const r = phone.getBoundingClientRect();
+    const target = Math.max(-1, Math.min(1, (r.top + r.height / 2 - innerHeight / 2) / innerHeight));
+    cur += (target - cur) * .12;
+    phone.style.setProperty('--rx', (cur * 28).toFixed(2) + 'deg');
+    phone.style.setProperty('--ry', (-6 + cur * 30).toFixed(2) + 'deg');
+    phone.style.setProperty('--rz', (cur * -4).toFixed(2) + 'deg');
+    phone.style.setProperty('--py', (cur * 50).toFixed(1) + 'px');
+    screen.style.setProperty('--glare', (cur * -70).toFixed(1) + '%');
+    requestAnimationFrame(tick);
+  })();
 }
 
 // scroll reveals, staggered within each grid
